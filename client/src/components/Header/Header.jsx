@@ -27,7 +27,7 @@ const Header = () => {
     const headerRef = useRef(null)
     const menuRef = useRef(null)
 
-    const handleStickHeader = () => {
+    const handleStickyHeader = () => {
         window.addEventListener('scorll', () => {
             if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
                 headerRef.current.classList.add('sticky__header')
@@ -42,10 +42,10 @@ const Header = () => {
     }
 
     useEffect(() => {
-        handleStickHeader()
+        handleStickyHeader()
 
         return () => {
-            window.removeEventListener('scroll', handleStickHeader)
+            window.removeEventListener('scroll', handleStickyHeader)
         }
     }, [])
 
