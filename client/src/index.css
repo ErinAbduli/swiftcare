@@ -24,15 +24,19 @@
   }
 
   .btn {
-    @apply bg-[--color-primaryColor] py-[15px] px-[35px] rounded-[50px] text-white font-[600] mt-[38px];
+    @apply bg-[color-primaryColor] py-[15px] px-[35px] rounded-[50px] text-white font-[600] mt-[38px];
   }
 
   .heading {
-    @apply text-[44px] leading-[54px] font-[700] text-[--color-headingColor];
+    @apply text-[44px] leading-[54px] font-[700] text-[color-headingColor];
   }
 
   .text__para {
-    @apply text-[18px] leading-[30px] font-[400] text-[--color-textColor] mt-[18px];
+    @apply text-[18px] leading-[30px] font-[400] text-[color-textColor] mt-[18px];
+  }
+
+  .header {
+    @apply bg-[url('./assets/images/mask.png')] bg-no-repeat bg-center bg-cover w-full h-[100px] leading-[100px];
   }
 }
 
@@ -53,5 +57,47 @@
 
   .text__para {
     @apply text-[16px] leading-7 mt-3;
+  }
+}
+
+.sticky__header {
+  width: 100%;
+  height: 80px;
+  line-height: 80px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  box-shadow: 3px 3px -8px 3px #ddd;
+}
+
+@media only screen and (max-width: 768px) {
+  .navigation {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+  }
+
+  .menu {
+    width: 15rem;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #fff;
+    z-index: 200;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    line-height: 30px;
+  }
+
+  .show__menu {
+    display: block;
   }
 }
