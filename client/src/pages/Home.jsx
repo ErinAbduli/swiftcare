@@ -7,7 +7,7 @@ const Home = () => {
                 <div className="flex flex-col lg:flex-row gap[90px] items-center justify-between">
                     <div>
                         <div className="lg:w-[570px]">
-                            <h1 className="text-[36px] leading-[46px] text-gray-900 font-[800] md:text-[60px] md:leading-[70px] ">We empower patients to live healthier, longer lives.</h1>
+                            <h1 className="text-[36px] leading-[46px] text-gray-900 font-[800] md:text-[60px] md:leading-[70px] ">We empower patients to live healthier lives.</h1>
                             <p className='text__para'>
                                 We empower patients with personalized care, innovative treatments, and preventive strategies to enhance their health and longevity. By providing knowledge and support, we help them make informed decisions for a healthier, fuller life.
                             </p>
