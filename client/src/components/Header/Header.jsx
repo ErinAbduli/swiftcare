@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react'
-import logo from '../../assets/images/logo (1).png'
 import userImg from '../../assets/images/avatar-icon.png'
 import { NavLink, Link } from 'react-router-dom'
 import { BiMenu, BiPlus, BiPlusMedical } from 'react-icons/bi'
@@ -29,7 +28,7 @@ const Header = () => {
 
     const handleStickyHeader = () => {
         window.addEventListener('scorll', () => {
-            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
                 headerRef.current.classList.add('sticky__header')
             } else {
                 headerRef.current.classList.remove('sticky__header')
@@ -44,9 +43,9 @@ const Header = () => {
     useEffect(() => {
         handleStickyHeader()
 
-        return () => {
-            window.removeEventListener('scroll', handleStickyHeader)
-        }
+        // return () => {
+        //     window.removeEventListener('scroll', handleStickyHeader)
+        // }
     }, [])
 
     return (
