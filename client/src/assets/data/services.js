@@ -1,38 +1,38 @@
 export const services = [
     {
-        name: "Cancer Care",
-        desc: "World-class care for everyone. Our health System offers unmatched, expert health care. From the lab to the clinic.",
-        bgColor: "rgba(254, 182, 13, .2)",
-        textColor: "#FEB60D",
+        "name": "General Consultation",
+        "desc": "Virtual appointments for general health concerns and medical advice.",
+        "bgColor": "rgba(0, 123, 255, 0.2)",
+        "textColor": "rgb(0, 123, 255)"
     },
     {
-        name: "Labor & Delivery",
-        desc: "World-class care for everyone. Our health System offers unmatched, expert health care. From the lab to the clinic.",
-        bgColor: "rgba(151, 113, 255, .2)",
-        textColor: "#9771FF",
+        "name": "Mental Health Counseling",
+        "desc": "Online therapy and counseling sessions for mental well-being.",
+        "bgColor": "rgba(255, 87, 51, 0.2)",
+        "textColor": "rgb(255, 87, 51)"
     },
     {
-        name: "Heart & Vascular",
-        desc: "World-class care for everyone. Our health System offers unmatched, expert health care. From the lab to the clinic.",
-        bgColor: "rgba(1, 181, 197, .2)",
-        textColor: "#01B5C5",
+        "name": "Dermatology",
+        "desc": "Remote skin consultations for rashes, acne, and other conditions.",
+        "bgColor": "rgba(40, 167, 69, 0.2)",
+        "textColor": "rgb(40, 167, 69)"
     },
     {
-        name: "Mental Health",
-        desc: "World-class care for everyone. Our health System offers unmatched, expert health care. From the lab to the clinic.",
-        bgColor: "rgba(1, 181, 197, .2)",
-        textColor: "#01B5C5",
+        "name": "Chronic Disease Management",
+        "desc": "Ongoing care for conditions like diabetes, hypertension, and asthma.",
+        "bgColor": "rgba(108, 117, 125, 0.2)",
+        "textColor": "rgb(108, 117, 125)"
     },
     {
-        name: "Neurology",
-        desc: "World-class care for everyone. Our health System offers unmatched, expert health care. From the lab to the clinic.",
-        bgColor: "rgba(254, 182, 13, .2)",
-        textColor: "#FEB60D",
+        "name": "Prescription Refills",
+        "desc": "Online prescriptions and medication management.",
+        "bgColor": "rgba(23, 162, 184, 0.2)",
+        "textColor": "rgb(23, 162, 184)"
     },
     {
-        name: "Burn Treatment",
-        desc: "World-class care for everyone. Our health System offers unmatched, expert health care. From the lab to the clinic.",
-        bgColor: "rgba(151, 113, 255, .2)",
-        textColor: "#9771FF",
-    },
-];
+        "name": "Women's Health",
+        "desc": "Telehealth services for reproductive health, pregnancy, and more.",
+        "bgColor": "rgba(233, 30, 99, 0.2)",
+        "textColor": "rgb(233, 30, 99)"
+    }
+]
