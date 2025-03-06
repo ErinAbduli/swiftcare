@@ -4,33 +4,33 @@ import doctorImg03 from "../images/doctor-img03.png";
 
 export const doctors = [
     {
-        id: "01",
-        name: "Dr. Alfaz Ahmed",
-        specialty: "Surgeon",
-        avgRating: 4.8,
-        totalRating: 272,
-        photo: doctorImg01,
-        totalPatients: 1500,
-        hospital: "Mount Adora Hospital, Sylhet.",
+        "id": 1,
+        "name": "Dr. Michael Carter",
+        "speciality": "Cardiologist",
+        "avgRating": 4.8,
+        "totalRating": 120,
+        "photo": doctorImg01,
+        "totalPatients": 1500,
+        "hospital": "City General Hospital"
     },
     {
-        id: "02",
-        name: "Dr. Saleh Mahmud",
-        specialty: "Neurologist",
-        avgRating: 4.8,
-        totalRating: 272,
-        photo: doctorImg02,
-        totalPatients: 1500,
-        hospital: "Mount Adora Hospital, Sylhet.",
+        "id": 2,
+        "name": "Dr. James Lee",
+        "speciality": "Orthopedic Surgeon",
+        "avgRating": 4.6,
+        "totalRating": 95,
+        "photo": doctorImg02,
+        "totalPatients": 1300,
+        "hospital": "Sunrise Medical Center"
     },
     {
-        id: "03",
-        name: "Dr. Farid Uddin",
-        specialty: "Dermatologist",
-        avgRating: 4.8,
-        totalRating: 272,
-        photo: doctorImg03,
-        totalPatients: 1500,
-        hospital: "Mount Adora Hospital, Sylhet.",
-    },
-];
+        "id": 3,
+        "name": "Dr. Daniel Martinez",
+        "speciality": "Dermatologist",
+        "avgRating": 4.9,
+        "totalRating": 180,
+        "photo": doctorImg03,
+        "totalPatients": 2100,
+        "hospital": "Riverside Skin Clinic"
+    }
+]
