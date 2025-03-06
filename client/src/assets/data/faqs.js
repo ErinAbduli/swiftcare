@@ -1,27 +1,22 @@
 export const faqs = [
     {
-        question: "What is your medical care?",
-        content:
-            "One Medical was founded on a better model of care one designed around patients needs that provides a higher level of quality and service affordably. We do this through innovative design, excellent customer service, and the efficient use of technology.",
+        "question": "What are the clinic's operating hours?",
+        "content": "Our clinic is open from 8:00 AM to 6:00 PM, Monday through Saturday. We are closed on Sundays and public holidays."
     },
     {
-        question: "What happens if I need to go a hospital?",
-        content:
-            "One Medical was founded on a better model of care one designed around patients needs that provides a higher level of quality and service affordably. We do this through innovative design, excellent customer service, and the efficient use of technology.",
+        "question": "Do I need an appointment, or do you accept walk-ins?",
+        "content": "We highly recommend booking an appointment in advance to ensure availability, but we do accept walk-ins based on doctor availability."
     },
     {
-        question: "What happens if I need to go a hospital?",
-        content:
-            "One Medical was founded on a better model of care one designed around patients needs that provides a higher level of quality and service affordably. We do this through innovative design, excellent customer service, and the efficient use of technology.",
+        "question": "What insurance plans do you accept?",
+        "content": "We accept most major insurance providers, including Aetna, Blue Cross Blue Shield, and UnitedHealthcare. Please contact us to confirm your specific coverage."
     },
     {
-        question: "Can I visit your medical office?",
-        content:
-            "One Medical was founded on a better model of care one designed around patients needs that provides a higher level of quality and service affordably. We do this through innovative design, excellent customer service, and the efficient use of technology.",
+        "question": "How can I get my test results?",
+        "content": "Test results are usually available within 2-3 business days. You can access them through our online patient portal or request a printed copy at the reception."
     },
     {
-        question: "Does you provide urgent care?",
-        content:
-            "One Medical was founded on a better model of care one designed around patients needs that provides a higher level of quality and service affordably. We do this through innovative design, excellent customer service, and the efficient use of technology.",
-    },
-];
+        "question": "What should I bring for my first visit?",
+        "content": "Please bring a valid ID, insurance card, a list of current medications, and any relevant medical records for a smoother consultation."
+    }
+]
