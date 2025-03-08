@@ -53,10 +53,12 @@ const Header = () => {
             <div className="container">
                 <div className="flex items-center justify-between">
                     <div className='flex items-center gap-1'>
-                        <span>
-                            <BiPlusMedical className='w-8 h-8 text-blue-600' />
-                        </span>
-                        <h3 className='font-[900] text-2xl'>SWIFTCARE</h3>
+                        <Link className='flex' to='/'>
+                            <span>
+                                <BiPlusMedical className='w-8 h-8 text-blue-600' />
+                            </span>
+                            <h3 className='font-[900] text-2xl'>SWIFTCARE</h3>
+                        </Link>
                     </div>
                     <div className="navigation" ref={menuRef} onClick={toggleMenu}>
                         <ul className="menu flex items-center gap-[2.7rem]">
