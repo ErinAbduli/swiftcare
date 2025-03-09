@@ -16,8 +16,8 @@ const DoctorCard = ({ doctor }) => {
                     {doctor.speciality}
                 </span>
                 <div className='flex items-center hap-[6px]'>
-                    <span className='flex itmes-center gap-[6px] leading-6 lg:text-[16px] lg:leading-7 font-semibold text-gray-900'>
-                        <img src={starIcon} alt="" /> {doctor.avgRating}
+                    <span className='flex itmes-center justify-center gap-[6px] leading-6 lg:text-[16px] lg:leading-7 font-semibold text-gray-900'>
+                        <img className='h-6 w-6' src={starIcon} alt="" /> {doctor.avgRating}
                     </span>
                     <span className='flex itmes-center gap-[6px] leading-6 lg:text-[16px] lg:leading-7 font-[400] text-gray-600'>
                         ({doctor.totalRating})

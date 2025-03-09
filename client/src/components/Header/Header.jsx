@@ -43,9 +43,9 @@ const Header = () => {
     useEffect(() => {
         handleStickyHeader()
 
-        // return () => {
-        //     window.removeEventListener('scroll', handleStickyHeader)
-        // }
+        return () => {
+            window.removeEventListener('scroll', handleStickyHeader)
+        }
     }, [])
 
     return (

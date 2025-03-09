@@ -16,7 +16,7 @@ export const doctors = [
     {
         "id": 2,
         "name": "Dr. James Lee",
-        "speciality": "Orthopedic Surgeon",
+        "speciality": "Orthoped",
         "avgRating": 4.6,
         "totalRating": 95,
         "photo": doctorImg02,
