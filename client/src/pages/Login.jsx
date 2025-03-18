@@ -1,9 +1,16 @@
-import React from 'react'
+import React from "react";
 
 const Login = () => {
-    return (
-        <div>Login</div>
-    )
-}
+	return (
+		<section className="px-5 lg:px-0">
+			<div className="w-full max-w-[570px] mx-auto rounded-lg shadow-md md:p-10">
+				<h3 className="text-gray-900 text-[22px] leading-9 font-bold mb-10">
+					Hello! <span className="text-blue-600">Welcome</span> Back
+				</h3>
+				<form className="py-4"></form>
+			</div>
+		</section>
+	);
+};
 
-export default Login
+export default Login;
