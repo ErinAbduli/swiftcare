@@ -1,4 +1,4 @@
-import User from "../models/userSchema.js";
+import User from "../models/UserSchema.js";
 import Doctor from "../models/doctorSchema.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
@@ -112,7 +112,6 @@ export const login = async (req, res) => {
 		res.status(500).json({
 			success: false,
 			msg: "failed to Login",
-			error: error.message,
 		});
 	}
 };
