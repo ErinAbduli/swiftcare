@@ -59,12 +59,12 @@ export const getSingleUser = async (req, res) => {
 
 export const getAllUsers = async (req, res) => {
 	try {
-		const user = await User.find({}).select("-password");
+		const users = await User.find({}).select("-password");
 
 		res.status(200).json({
 			success: true,
 			msg: "Users found",
-			data: user,
+			data: users,
 		});
 	} catch (error) {
 		res.status(500).json({
