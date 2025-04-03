@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { formatDate } from "../../components/Utils/formatDate.js";
+import { formatDate } from "../../utils/formatDate.js";
 import { AiFillStar } from "react-icons/ai";
 import FeedbackForm from "./FeedbackForm.jsx";
 import avatar from "../../assets/images/avatar-icon.png";
