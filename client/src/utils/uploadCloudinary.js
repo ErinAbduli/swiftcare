@@ -5,19 +5,25 @@ const uploadImageToCloudinary = async (file) => {
 	const uploadData = new FormData();
 
 	uploadData.append("file", file);
-	uploadData.append("upload_preset", uploadPreset);
-	uploadData.append("cloud_name", cloudName);
+	uploadData.append("upload_preset", "doctor-booking-system");
 
-	const res = await fetch(
-		`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
-		{
-			method: "POST",
-			body: uploadData,
-		}
-	);
+	try {
+		console.log(uploadData);
+		const res = await fetch(
+			`https://api.cloudinary.com/v1_1/erinabduli/image/upload`,
+			{
+				method: "post",
+				body: uploadData,
+			}
+		);
 
-	const data = await res.json();
-	return data;
+		const data = await res.json();
+		return data;
+		console.log(data);
+	} catch (error) {
+		console.error("Error uploading image to Cloudinary:", error);
+		throw new Error("Image upload failed");
+	}
 };
 
 export default uploadImageToCloudinary;
