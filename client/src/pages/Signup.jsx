@@ -1,12 +1,16 @@
 import { useState } from "react";
 import signupImg from "../assets/images/signup.gif";
 import avatar from "../assets/images/avatar-icon.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import uploadImageToCloudinary from "../utils/uploadCloudinary.js";
+import { BASE_URL } from "../config.js";
+import { toast } from "react-toastify";
+import HashLoader from "react-spinners/HashLoader";
 
 const Signup = () => {
 	const [selectedFile, setSelectedFile] = useState(null);
 	const [previewURL, setPreviewURL] = useState("");
+	const [loading, setIsLoading] = useState(false);
 
 	const [formData, setFormData] = useState({
 		name: "",
@@ -17,6 +21,8 @@ const Signup = () => {
 		role: "patient",
 	});
 
+	const navigate = useNavigate();
+
 	const handleInputChange = (e) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 	};
@@ -26,11 +32,38 @@ const Signup = () => {
 
 		const data = await uploadImageToCloudinary(file);
 
-		console.log(data);
+		setPreviewURL(data.url);
+		setSelectedFile(data.url);
+		setFormData({ ...formData, photo: data.url });
 	};
 
 	const submitHandler = async (e) => {
 		e.preventDefault();
+
+		setIsLoading(true);
+
+		try {
+			const res = await fetch(`${BASE_URL}/auth/register`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(formData),
+			});
+
+			const { msg } = await res.json();
+
+			if (!res.ok) {
+				throw new Error(msg);
+			}
+
+			setIsLoading(false);
+			toast.success(msg);
+			navigate("/login");
+		} catch (error) {
+			toast.error(error.message);
+			setIsLoading(false);
+		}
 	};
 
 	return (
@@ -125,13 +158,15 @@ const Signup = () => {
 								</div>
 							</div>
 							<div className="mb-5 flex items-center gap-3">
-								<figure className="w-[60px] h-[60px] rounded-full border-2 border-solid border-blue-600 flex items-center justify-center">
-									<img
-										src={avatar}
-										alt=""
-										className="w-full rounded-full"
-									/>
-								</figure>
+								{selectedFile && (
+									<figure className="w-[60px] h-[60px] rounded-full border-2 border-solid border-blue-600 flex items-center justify-center">
+										<img
+											src={previewURL}
+											alt=""
+											className="w-full rounded-full"
+										/>
+									</figure>
+								)}
 								<div className="relative w-[160px] h-[50px]">
 									<input
 										type="file"
@@ -151,10 +186,15 @@ const Signup = () => {
 							</div>
 							<div className="mt-7">
 								<button
+									disabled={loading}
 									type="submit"
 									className="w-full bg-blue-600 text-white text-[18px] leading-[30px] rounded-lg cursor-pointer px-4 py-3"
 								>
-									Login
+									{loading ? (
+										<HashLoader size={35} color="#ffffff" />
+									) : (
+										"Sign Up"
+									)}
 								</button>
 							</div>
 							<p className="mt-5 text-gray-600 text-center">

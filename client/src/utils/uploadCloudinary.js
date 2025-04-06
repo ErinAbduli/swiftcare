@@ -19,7 +19,6 @@ const uploadImageToCloudinary = async (file) => {
 
 		const data = await res.json();
 		return data;
-		console.log(data);
 	} catch (error) {
 		console.error("Error uploading image to Cloudinary:", error);
 		throw new Error("Image upload failed");
