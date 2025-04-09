@@ -1,5 +1,8 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { BASE_URL } from "../config";
+import { toast } from "react-toastify";
+import { authContext } from "../context/AuthContext.jsx";
 
 const Login = () => {
 	const [formData, setFormData] = useState({
@@ -7,8 +10,53 @@ const Login = () => {
 		password: "",
 	});
 
+	const [loading, setIsLoading] = useState(false);
+
+	const navigate = useNavigate();
+	const { dispatch } = useContext(authContext);
+
 	const handleInputChange = (e) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
+	};
+
+	const submitHandler = async (e) => {
+		e.preventDefault();
+
+		setIsLoading(true);
+
+		try {
+			const res = await fetch(`${BASE_URL}/auth/login`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(formData),
+			});
+
+			const response = await res.json();
+
+			if (!res.ok) {
+				throw new Error(response);
+			}
+
+			dispatch({
+				type: "LOGIN_SUCCESS",
+				payload: {
+					user: response.data,
+					role: response.role,
+					token: response.token,
+				},
+			});
+
+			console.log(response, "response");
+
+			setIsLoading(false);
+			toast.success(response.msg);
+			navigate("/");
+		} catch (error) {
+			toast.error(error.message);
+			setIsLoading(false);
+		}
 	};
 
 	return (
@@ -17,7 +65,7 @@ const Login = () => {
 				<h3 className="text-gray-900 text-[22px] leading-9 font-bold mb-10">
 					Hello! <span className="text-blue-600">Welcome</span> Back
 				</h3>
-				<form className="py-4 md:py-0">
+				<form className="py-4 md:py-0" onSubmit={submitHandler}>
 					<div className="mb-5">
 						<input
 							type="email"
