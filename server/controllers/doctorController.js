@@ -1,4 +1,5 @@
-import Doctor from "../models/doctorSchema.js";
+import Doctor from "../models/DoctorSchema.js";
+import Booking from "../models/BookingSchema.js";
 
 export const updateDoctor = async (req, res) => {
 	const id = req.params.id;
@@ -87,6 +88,37 @@ export const getAllDoctors = async (req, res) => {
 		res.status(500).json({
 			success: false,
 			msg: "Could not find the doctors",
+		});
+	}
+};
+
+export const getDoctorProfile = async (req, res) => {
+	const doctorId = req.userId;
+
+	try {
+		const doctor = await Doctor.findById(doctorId).select("-password");
+
+		if (!doctor) {
+			return res.status(404).json({
+				success: false,
+				msg: "Doctor not found",
+			});
+		}
+
+		const { ...doctorData } = doctor._doc;
+		const appointments = await Booking.find({
+			doctor: doctorId,
+		});
+
+		res.status(200).json({
+			success: true,
+			msg: "Doctor profile found",
+			data: { doctorData, appointments },
+		});
+	} catch (error) {
+		res.status(500).json({
+			success: false,
+			msg: "Could not find the doctor profile",
 		});
 	}
 };
