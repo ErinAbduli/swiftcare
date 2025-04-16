@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
 import { authContext } from "../../context/AuthContext";
-import userImg from "../../assets/images/doctor-img01.png";
 import MyBookings from "./MyBookings";
 import Profile from "./Profile";
 import useFetchData from "../../hooks/useFetchData";
@@ -34,7 +33,7 @@ const MyAccount = () => {
 							<div className="flex items-center justify-center">
 								<figure className="w-[100px] h-[100px] rounded-full overflow-hidden border-2 border-solid border-blue-600">
 									<img
-										src={userImg}
+										src={userData.photo}
 										alt=""
 										className="w-full h-full rounded-full"
 									/>
@@ -42,15 +41,15 @@ const MyAccount = () => {
 							</div>
 							<div className="text-center mt-4">
 								<h3 className="text-[18px] leading-[30px] text-gray-900 font-bold">
-									Mhibur Rahman
+									{userData.name}
 								</h3>
 								<p className="text-gray-600 text-[15px] leading-6 font-medium">
-									email@gmail.com
+									{userData.email}
 								</p>
 								<p className="text-gray-600 text-[15px] leading-6 font-medium">
 									Blood Type:{" "}
 									<span className="ml-2 text-gray-900 text-[22px] leading-8">
-										o+
+										{userData.bloodType}
 									</span>
 								</p>
 							</div>
@@ -87,7 +86,11 @@ const MyAccount = () => {
 									Profile Settings
 								</button>
 							</div>
-							{tab === "bookings" ? <MyBookings /> : <Profile />}
+							{tab === "bookings" ? (
+								<MyBookings />
+							) : (
+								<Profile user={userData} />
+							)}
 						</div>
 					</div>
 				)}
