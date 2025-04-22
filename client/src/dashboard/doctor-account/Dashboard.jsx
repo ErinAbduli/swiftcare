@@ -4,6 +4,9 @@ import Error from "../../components/Error/Error.jsx";
 import useFetchData from "../../hooks/useFetchData.jsx";
 import { BASE_URL, token } from "../../config.js";
 import Tabs from "./Tabs.jsx";
+import starIcon from "../../assets/images/star.png";
+import DoctorAbout from "../../pages/Doctors/DoctorAbout";
+import Profile from "./Profile.jsx";
 
 const Dashboard = () => {
 	const { data, loading, error } = useFetchData(
@@ -67,16 +70,32 @@ const Dashboard = () => {
 												</span>
 
 												<h3 className="text-[22px] leading-9 font-bold text0gray-900 mt-3">
-													{data?.doctorData.name}
+													{data?.doctorData?.name}
 												</h3>
+												<div className="flex items-center gap-[6px]">
+													<span className="flex items-center gap-[6px] text-gray-900 text-[14px] leading-5 lg:text-[16px] lg:leading-6 font-semibold">
+														<img
+															src={starIcon}
+															alt=""
+														/>
+														4.5
+													</span>
+													<span className=" text-gray-500 text-[14px] leading-5 lg:text-[16px] lg:leading-6 font-semibold">
+														(233)
+													</span>
+												</div>
+												<p className="text__para font-[15px] lg:max-w-[390px] leading-6">
+													Doctor Bio
+												</p>
 											</div>
 										</div>
+										<DoctorAbout doctor={data.doctorData} />
 									</div>
 								)}
 								{tab === "appointments" && (
 									<div>appointments</div>
 								)}
-								{tab === "profile" && <div>profile</div>}
+								{tab === "profile" && <Profile />}
 							</div>
 						</div>
 					</div>

@@ -1,20 +1,20 @@
 import React from "react";
 import { formatDate } from "../../utils/formatDate.js";
 
-const DoctorAbout = () => {
+const DoctorAbout = ({ doctor }) => {
 	return (
 		<div>
 			<div>
 				<h3 className="text-[20px] leading-[30px] text-gray-900 font-semibold flex items-center gap-2">
 					About of
 					<span className="text-cyan-500 font-bold text-[24px] leading-9">
-						James Lee
+						{doctor?.name}
 					</span>
 				</h3>
 				<p className="text__para">
-					Dr. James Lee is a highly skilled orthopedic surgeon with
-					expertise in joint replacement, sports medicine, and spinal
-					disorders. With over a decade of experience, he has
+					Dr. {doctor.name} is a highly skilled orthopedic surgeon
+					with expertise in joint replacement, sports medicine, and
+					spinal disorders. With over a decade of experience, he has
 					successfully performed numerous complex orthopedic
 					procedures, helping patients regain mobility and live
 					pain-free lives. Dr. Lee is known for his precision in
