@@ -12,7 +12,7 @@ const DoctorAbout = ({ doctor }) => {
 					</span>
 				</h3>
 				<p className="text__para">
-					Dr. {doctor.name} is a highly skilled orthopedic surgeon
+					Dr. {doctor?.name} is a highly skilled orthopedic surgeon
 					with expertise in joint replacement, sports medicine, and
 					spinal disorders. With over a decade of experience, he has
 					successfully performed numerous complex orthopedic

@@ -51,13 +51,13 @@ const Dashboard = () => {
 								{tab === "overview" && (
 									<div>
 										<div className="flex items-center gap-4 mb-10">
-											<figure className="max-w-[200px] max-h-[200px]">
+											<figure className="max-w-[200px] max-h-[200px] ">
 												<img
 													src={
 														data?.doctorData?.photo
 													}
 													alt=""
-													className="w-full"
+													className="w-full h-full rounded-md"
 												/>
 											</figure>
 											<div>
