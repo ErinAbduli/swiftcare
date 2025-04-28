@@ -31,8 +31,26 @@ const Profile = () => {
 
 	const handleFileInputChange = (e) => {};
 
-	updateProfileHandler = async (e) => {
+	const updateProfileHandler = async (e) => {
 		e.preventDefault();
+	};
+
+	const addItem = (key, newItem) => {
+		setFormData((prevData) => ({
+			...prevData,
+			[key]: [...prevData[key], newItem],
+		}));
+	};
+
+	const addQualification = (e) => {
+		e.preventDefault();
+
+		addItem("qualifications", {
+			startingDate: "",
+			endingDate: "",
+			degree: "",
+			university: "",
+		});
 	};
 
 	return (
@@ -191,7 +209,10 @@ const Profile = () => {
 							</div>
 						</div>
 					))}
-					<button className="bg-[#000] py-2 px-5 rounded text-white h-fit cursor-pointer">
+					<button
+						onClick={addQualification}
+						className="bg-[#000] py-2 px-5 rounded text-white h-fit cursor-pointer"
+					>
 						Add Qualifications
 					</button>
 				</div>
