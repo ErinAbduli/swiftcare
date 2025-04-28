@@ -17,6 +17,8 @@ const Profile = () => {
 			{ startingDate: "", endingDate: "", position: "", hospital: "" },
 		],
 		timeSlots: [{ day: "", startingTime: "", endingTime: "" }],
+		about: "",
+		photo: null,
 	});
 
 	const handleInputChange = (e) => {
@@ -25,6 +27,12 @@ const Profile = () => {
 			...prevData,
 			[name]: value,
 		}));
+	};
+
+	const handleFileInputChange = (e) => {};
+
+	updateProfileHandler = async (e) => {
+		e.preventDefault();
 	};
 
 	return (
@@ -247,11 +255,11 @@ const Profile = () => {
 					</button>
 				</div>
 				<div className="mb-5">
-					<p className="form__label">Experiences*</p>
+					<p className="form__label">Time Slots*</p>
 					{formData.timeSlots?.map((timeSlot, index) => (
 						<div key={index}>
 							<div>
-								<div className="grid grid-cols-2 md:gird-cols-4 mb-[30px] gap-5">
+								<div className="grid grid-cols-2 md:grid-cols-4 mb-[30px] gap-5">
 									<div>
 										<p className="form__label">Day*</p>
 										<select
@@ -316,6 +324,53 @@ const Profile = () => {
 					))}
 					<button className="bg-[#000] py-2 px-5 rounded text-white h-fit cursor-pointer">
 						Add Time Slot
+					</button>
+				</div>
+				<div className="mb-5">
+					<p className="form__label">About*</p>
+					<textarea
+						name="about"
+						rows={5}
+						value={formData?.about}
+						placeholder="Write about you..."
+						onChange={handleInputChange}
+						className="form__input"
+					></textarea>
+				</div>
+				<div className="mb-5 flex items-center gap-3">
+					{formData?.photo && (
+						<figure className="w-[60px] h-[60px] rounded-full border-2 border-solid border-blue-600 flex items-center justify-center">
+							<img
+								src={formData?.photo}
+								alt=""
+								className="w-full rounded-full"
+							/>
+						</figure>
+					)}
+					<div className="relative w-[160px] h-[50px]">
+						<input
+							type="file"
+							name="photo"
+							onChange={handleFileInputChange}
+							id="customFile"
+							accept=".jpg, .png"
+							className="ansolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+						/>
+						<label
+							htmlFor="customFile"
+							className="absolute top-0 left-0 w-full h-full flex items-center px-[17%] py-[12%] leading-6 overflow-hidden bg-[#0066ff46] text-gray-900 font-semibold rounded-lg truncate cursor-pointer"
+						>
+							Upload Photo
+						</label>
+					</div>
+				</div>
+				<div className="mt-7">
+					<button
+						type="submit"
+						onClick={updateProfileHandler}
+						className="bg-blue-600 text-white text-[18px] leading-[30px] w-full py-3 px-4 rounded-lg"
+					>
+						Update Profile
 					</button>
 				</div>
 			</form>
