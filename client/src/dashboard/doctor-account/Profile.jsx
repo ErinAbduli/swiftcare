@@ -42,6 +42,28 @@ const Profile = () => {
 		}));
 	};
 
+	const handleReusableInputChange = (key, index, e) => {
+		const { name, value } = e.target;
+
+		setFormData((prevFormData) => {
+			const updateItems = [...prevFormData[key]];
+
+			updateItems[index][name] = value;
+
+			return {
+				...prevFormData,
+				[key]: updateItems,
+			};
+		});
+	};
+
+	const deleteItem = (key, index) => {
+		setFormData((prevFormData) => ({
+			...prevFormData,
+			[key]: prevFormData[key].filter((_, i) => i !== index),
+		}));
+	};
+
 	const addQualification = (e) => {
 		e.preventDefault();
 
@@ -51,6 +73,15 @@ const Profile = () => {
 			degree: "",
 			university: "",
 		});
+	};
+
+	const handleQualificationChange = (e, index) => {
+		handleReusableInputChange("qualifications", index, e);
+	};
+
+	const deleteQualification = (e, index) => {
+		e.preventDefault();
+		deleteItem("qualifications", index);
 	};
 
 	return (
@@ -167,6 +198,12 @@ const Profile = () => {
 											name="startingDate"
 											value={qualification?.startingDate}
 											className="form__input"
+											onChange={(e) =>
+												handleQualificationChange(
+													e,
+													index
+												)
+											}
 										/>
 									</div>
 									<div>
@@ -178,6 +215,12 @@ const Profile = () => {
 											name="endingDate"
 											value={qualification?.endingDate}
 											className="form__input"
+											onChange={(e) =>
+												handleQualificationChange(
+													e,
+													index
+												)
+											}
 										/>
 									</div>
 								</div>
@@ -189,6 +232,12 @@ const Profile = () => {
 											name="degree"
 											value={qualification?.degree}
 											className="form__input"
+											onChange={(e) =>
+												handleQualificationChange(
+													e,
+													index
+												)
+											}
 										/>
 									</div>
 									<div>
@@ -200,10 +249,21 @@ const Profile = () => {
 											name="university"
 											value={qualification?.university}
 											className="form__input"
+											onChange={(e) =>
+												handleQualificationChange(
+													e,
+													index
+												)
+											}
 										/>
 									</div>
 								</div>
-								<button className="bg-red-600 p-2 rounded-full text-white text-[18px] mt-2 mb-[30px] cursor-pointer">
+								<button
+									onClick={(e) =>
+										deleteQualification(e, index)
+									}
+									className="bg-red-600 p-2 rounded-full text-white text-[18px] mt-2 mb-[30px] cursor-pointer"
+								>
 									<AiOutlineDelete />
 								</button>
 							</div>
