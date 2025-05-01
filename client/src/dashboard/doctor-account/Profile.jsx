@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
+import uploadImageToCloudinary from "../../utils/uploadCloudinary.js";
+import { BASE_URL, token } from "../../config.js";
+import { toast } from "react-toastify";
 
-const Profile = () => {
+const Profile = ({ doctorData }) => {
 	const [formData, setFormData] = useState({
 		name: "",
 		email: "",
+		password: "",
 		phone: "",
 		bio: "",
 		gender: "",
@@ -12,10 +16,27 @@ const Profile = () => {
 		ticketPrice: 0,
 		qualifications: [],
 		experiences: [],
-		timeSlots: [{ day: "", startingTime: "", endingTime: "" }],
+		timeSlots: [],
 		about: "",
 		photo: null,
 	});
+
+	useEffect(() => {
+		setFormData({
+			name: doctorData?.name,
+			email: doctorData?.email,
+			phone: doctorData?.phone,
+			bio: doctorData?.bio,
+			gender: doctorData?.gender,
+			specialization: doctorData?.specialization,
+			ticketPrice: doctorData?.ticketPrice,
+			qualifications: doctorData?.qualifications,
+			experiences: doctorData?.experiences,
+			timeSlots: doctorData?.timeSlots,
+			about: doctorData?.about,
+			photo: doctorData?.photo,
+		});
+	}, [doctorData]);
 
 	const handleInputChange = (e) => {
 		const { name, value } = e.target;
@@ -25,10 +46,36 @@ const Profile = () => {
 		}));
 	};
 
-	const handleFileInputChange = (e) => {};
+	const handleFileInputChange = async (e) => {
+		const file = e.target.files[0];
+		const data = await uploadImageToCloudinary(file);
+
+		setFormData({ ...formData, photo: data.url });
+	};
 
 	const updateProfileHandler = async (e) => {
 		e.preventDefault();
+
+		try {
+			const res = await fetch(`${BASE_URL}/doctors/${doctorData._id}`, {
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+					authorization: `Bearer ${token}`,
+				},
+				body: JSON.stringify(formData),
+			});
+
+			const result = await res.json();
+
+			if (!res.ok) {
+				throw new Error(result.message || "Something went wrong!");
+			}
+
+			toast.success("Profile updated successfully!");
+		} catch (error) {
+			toast.error(error.message);
+		}
 	};
 
 	const addItem = (key, newItem) => {
@@ -98,6 +145,25 @@ const Profile = () => {
 	const deleteExperience = (e, index) => {
 		e.preventDefault();
 		deleteItem("experiences", index);
+	};
+
+	const addTimeSlot = (e) => {
+		e.preventDefault();
+
+		addItem("timeSlots", {
+			day: "",
+			startingTime: "",
+			endingTime: "",
+		});
+	};
+
+	const handleTimeSlotChange = (e, index) => {
+		handleReusableInputChange("timeSlots", index, e);
+	};
+
+	const deleteTimeSlot = (e, index) => {
+		e.preventDefault();
+		deleteItem("timeSlots", index);
 	};
 
 	return (
@@ -381,6 +447,9 @@ const Profile = () => {
 											name="day"
 											value={timeSlot.day}
 											className="form__input py-3.5"
+											onChange={(e) =>
+												handleTimeSlotChange(e, index)
+											}
 										>
 											<option value="">Select</option>
 											<option value="saturday">
@@ -411,6 +480,9 @@ const Profile = () => {
 											Starting Time*
 										</p>
 										<input
+											onChange={(e) =>
+												handleTimeSlotChange(e, index)
+											}
 											type="time"
 											name="startingTime"
 											value={timeSlot?.startingTime}
@@ -422,6 +494,9 @@ const Profile = () => {
 											Ending Time*
 										</p>
 										<input
+											onChange={(e) =>
+												handleTimeSlotChange(e, index)
+											}
 											type="time"
 											name="endingTime"
 											value={timeSlot?.endingTime}
@@ -429,7 +504,12 @@ const Profile = () => {
 										/>
 									</div>
 									<div className="flex items-center">
-										<button className="bg-red-600 p-2 rounded-full text-white text-[18px] cursor-pointer mt-6">
+										<button
+											onClick={(e) =>
+												deleteTimeSlot(e, index)
+											}
+											className="bg-red-600 p-2 rounded-full text-white text-[18px] cursor-pointer mt-6"
+										>
 											<AiOutlineDelete />
 										</button>
 									</div>
@@ -437,7 +517,10 @@ const Profile = () => {
 							</div>
 						</div>
 					))}
-					<button className="bg-[#000] py-2 px-5 rounded text-white h-fit cursor-pointer">
+					<button
+						onClick={addTimeSlot}
+						className="bg-[#000] py-2 px-5 rounded text-white h-fit cursor-pointer"
+					>
 						Add Time Slot
 					</button>
 				</div>
@@ -483,7 +566,7 @@ const Profile = () => {
 					<button
 						type="submit"
 						onClick={updateProfileHandler}
-						className="bg-blue-600 text-white text-[18px] leading-[30px] w-full py-3 px-4 rounded-lg"
+						className="bg-blue-600 text-white text-[18px] leading-[30px] w-full py-3 px-4 rounded-lg cursor-pointer"
 					>
 						Update Profile
 					</button>

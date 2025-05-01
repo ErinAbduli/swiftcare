@@ -13,6 +13,8 @@ const Dashboard = () => {
 		`${BASE_URL}/doctors/profile/me`
 	);
 
+	console.log(data);
+
 	const [tab, setTab] = useState("overview");
 
 	return (
@@ -63,10 +65,10 @@ const Dashboard = () => {
 											<div>
 												<span className="bg-[#ccf0f3] text-irisBlueColor py-1 px-4 lg:py-2 lg:px-6 rounded text-[12px] leading-4 lg:text-[16px] lg:leading-6 font-semibold">
 													{data?.doctorData
-														?.specalization
+														?.specialization
 														? data?.doctorData
-																?.specalization
-														: "No Specialization"}
+																?.specialization
+														: "General"}
 												</span>
 
 												<h3 className="text-[22px] leading-9 font-bold text0gray-900 mt-3">
@@ -78,14 +80,22 @@ const Dashboard = () => {
 															src={starIcon}
 															alt=""
 														/>
-														4.5
+														{
+															data?.doctorData
+																?.averageRating
+														}
 													</span>
 													<span className=" text-gray-500 text-[14px] leading-5 lg:text-[16px] lg:leading-6 font-semibold">
-														(233)
+														(
+														{
+															data?.doctorData
+																?.totalRating
+														}
+														)
 													</span>
 												</div>
 												<p className="text__para font-[15px] lg:max-w-[390px] leading-6">
-													Doctor Bio
+													{data?.doctorData?.bio}
 												</p>
 											</div>
 										</div>
@@ -95,7 +105,9 @@ const Dashboard = () => {
 								{tab === "appointments" && (
 									<div>appointments</div>
 								)}
-								{tab === "profile" && <Profile />}
+								{tab === "profile" && (
+									<Profile doctorData={data.doctorData} />
+								)}
 							</div>
 						</div>
 					</div>
