@@ -10,12 +10,8 @@ const Profile = () => {
 		gender: "",
 		specialization: "",
 		ticketPrice: 0,
-		qualifications: [
-			{ startingDate: "", endingDate: "", degree: "", university: "" },
-		],
-		experiences: [
-			{ startingDate: "", endingDate: "", position: "", hospital: "" },
-		],
+		qualifications: [],
+		experiences: [],
 		timeSlots: [{ day: "", startingTime: "", endingTime: "" }],
 		about: "",
 		photo: null,
@@ -82,6 +78,26 @@ const Profile = () => {
 	const deleteQualification = (e, index) => {
 		e.preventDefault();
 		deleteItem("qualifications", index);
+	};
+
+	const addExpereince = (e) => {
+		e.preventDefault();
+
+		addItem("experiences", {
+			startingDate: "",
+			endingDate: "",
+			position: "",
+			hospital: "",
+		});
+	};
+
+	const handleExperienceChange = (e, index) => {
+		handleReusableInputChange("experiences", index, e);
+	};
+
+	const deleteExperience = (e, index) => {
+		e.preventDefault();
+		deleteItem("experiences", index);
 	};
 
 	return (
@@ -287,6 +303,9 @@ const Profile = () => {
 											Starting Date*
 										</p>
 										<input
+											onChange={(e) =>
+												handleExperienceChange(e, index)
+											}
 											type="date"
 											name="startingDate"
 											value={experience?.startingDate}
@@ -298,6 +317,9 @@ const Profile = () => {
 											Ending Date*
 										</p>
 										<input
+											onChange={(e) =>
+												handleExperienceChange(e, index)
+											}
 											type="date"
 											name="endingDate"
 											value={experience?.endingDate}
@@ -309,6 +331,9 @@ const Profile = () => {
 									<div>
 										<p className="form__label">Position*</p>
 										<input
+											onChange={(e) =>
+												handleExperienceChange(e, index)
+											}
 											type="text"
 											name="position"
 											value={experience?.position}
@@ -318,6 +343,9 @@ const Profile = () => {
 									<div>
 										<p className="form__label">Hospital*</p>
 										<input
+											onChange={(e) =>
+												handleExperienceChange(e, index)
+											}
 											type="text"
 											name="hospital"
 											value={experience?.hospital}
@@ -325,13 +353,19 @@ const Profile = () => {
 										/>
 									</div>
 								</div>
-								<button className="bg-red-600 p-2 rounded-full text-white text-[18px] mt-2 mb-[30px] cursor-pointer">
+								<button
+									onClick={(e) => deleteExperience(e, index)}
+									className="bg-red-600 p-2 rounded-full text-white text-[18px] mt-2 mb-[30px] cursor-pointer"
+								>
 									<AiOutlineDelete />
 								</button>
 							</div>
 						</div>
 					))}
-					<button className="bg-[#000] py-2 px-5 rounded text-white h-fit cursor-pointer">
+					<button
+						onClick={addExpereince}
+						className="bg-[#000] py-2 px-5 rounded text-white h-fit cursor-pointer"
+					>
 						Add Expereinces
 					</button>
 				</div>
