@@ -3,7 +3,6 @@ import starIcon from "../../assets/images/Star.png";
 import { BsArrowRight } from "react-icons/bs";
 import { Link } from "react-router-dom";
 const DoctorCard = ({ doctor }) => {
-	console.log(doctor);
 	return (
 		<div className="p-3 lg:p-5">
 			<div>

@@ -13,8 +13,6 @@ const DoctorList = () => {
 		error,
 	} = useFetchData(`${BASE_URL}/doctors`);
 
-	console.log(doctors);
-
 	return (
 		<>
 			{loading && <Loader />}

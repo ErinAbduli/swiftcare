@@ -22,7 +22,7 @@ export const createReview = async (req, res) => {
 		req.body.doctor = req.params.doctorId;
 	}
 	if (!req.body.user) {
-		req.body.user = req.params.userId;
+		req.body.user = req.userId;
 	}
 
 	const newReview = new Review(req.body);

@@ -1,13 +1,51 @@
-import React from "react";
+import { useState } from "react";
 import { AiFillStar } from "react-icons/ai";
+import { HashLoader } from "react-spinners";
+import { useParams } from "react-router-dom";
+import { BASE_URL, token } from "../../config.js";
+import { toast } from "react-toastify";
 
 const FeedbackForm = () => {
-	const [rating, setRating] = React.useState(0);
-	const [hover, setHover] = React.useState(0);
-	const [reviewText, setReviewText] = React.useState("");
+	const [rating, setRating] = useState(0);
+	const [hover, setHover] = useState(0);
+	const [reviewText, setReviewText] = useState("");
+	const [loading, setLoading] = useState(false);
 
-	const handleSubmit = (e) => {
+	const { id } = useParams();
+
+	const handleSubmit = async (e) => {
 		e.preventDefault();
+		setLoading(true);
+
+		try {
+			if (!rating || !reviewText) {
+				setLoading(false);
+				return toast.error("Please fill all fields!");
+			}
+			const res = await fetch(`${BASE_URL}/doctors/${id}/reviews`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${token}`,
+				},
+				body: JSON.stringify({
+					rating,
+					reviewText,
+				}),
+			});
+
+			const result = await res.json();
+
+			if (!res.ok) {
+				throw new Error(result.message);
+			}
+
+			setLoading(false);
+			toast.success("Feedback submitted successfully!");
+		} catch (error) {
+			setLoading(false);
+			toast.error(error.message);
+		}
 	};
 
 	return (
@@ -58,7 +96,11 @@ const FeedbackForm = () => {
 				></textarea>
 			</div>
 			<button onClick={handleSubmit} type="submit" className="btn">
-				Submit Feedback
+				{loading ? (
+					<HashLoader size={25} color="#fff" />
+				) : (
+					`Submit Feedback`
+				)}
 			</button>
 		</form>
 	);
