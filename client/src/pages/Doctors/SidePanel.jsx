@@ -1,4 +1,5 @@
 import React from "react";
+import convertTime from "../../utils/convertTime.js";
 
 const SidePanel = ({ doctorId, timeSlots, ticketPrice }) => {
 	return (
@@ -26,8 +27,8 @@ const SidePanel = ({ doctorId, timeSlots, ticketPrice }) => {
 									timeSlot?.day.slice(1)}
 							</p>
 							<p className="text-[15px] leading-6 text-gray-600 font-semibold">
-								{timeSlot?.startingTime} -{" "}
-								{timeSlot?.endingTime}
+								{convertTime(timeSlot?.startingTime)} -{" "}
+								{convertTime(timeSlot?.endingTime)}
 							</p>
 						</li>
 					))}
