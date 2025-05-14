@@ -1,10 +1,8 @@
 import { useState } from "react";
-import doctorImg from "../../assets/images/doctor-img02.png";
 import starIcon from "../../assets/images/Star.png";
 import DoctorAbout from "./DoctorAbout";
 import Feedback from "./Feedback";
 import SidePanel from "./SidePanel";
-import { BASE_URL } from "../../config.js";
 import useFetchData from "../../hooks/useFetchData.jsx";
 import Loader from "../../components/Loader/Loading.jsx";
 import Error from "../../components/Error/Error.jsx";
@@ -18,7 +16,7 @@ const DoctorDetails = () => {
 		data: doctor,
 		loading,
 		error,
-	} = useFetchData(`${BASE_URL}/doctors/${id}`);
+	} = useFetchData(`${import.meta.env.VITE_BASE_URL}/doctors/${id}`);
 
 	return (
 		<section>

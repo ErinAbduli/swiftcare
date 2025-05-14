@@ -1,7 +1,5 @@
 import React from "react";
-import { doctors } from "../../assets/data/doctors";
 import DoctorCard from "./DoctorCard";
-import { BASE_URL } from "../../config.js";
 import useFetchData from "../../hooks/useFetchData.jsx";
 import Loader from "../Loader/Loading.jsx";
 import Error from "../Error/Error.jsx";
@@ -11,7 +9,7 @@ const DoctorList = () => {
 		data: doctors,
 		loading,
 		error,
-	} = useFetchData(`${BASE_URL}/doctors`);
+	} = useFetchData(`${import.meta.env.VITE_BASE_URL}/doctors`);
 
 	return (
 		<>

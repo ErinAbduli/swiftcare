@@ -3,7 +3,6 @@ import { authContext } from "../../context/AuthContext";
 import MyBookings from "./MyBookings";
 import Profile from "./Profile";
 import useFetchData from "../../hooks/useFetchData";
-import { BASE_URL } from "../../config";
 import Loading from "../../components/Loader/Loading.jsx";
 import Error from "../../components/Error/Error.jsx";
 const MyAccount = () => {
@@ -14,7 +13,7 @@ const MyAccount = () => {
 		data: userData,
 		loading,
 		error,
-	} = useFetchData(`${BASE_URL}/users/profile/me`);
+	} = useFetchData(`${import.meta.env.VITE_BASE_URL}/users/profile/me`);
 
 	const handleLogout = () => {
 		dispatch({ type: "LOGOUT" });

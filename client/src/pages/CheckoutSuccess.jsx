@@ -22,9 +22,9 @@ const CheckoutSuccess = () => {
 						Thank you for compeleting your online secure payment.
 					</p>
 					<p>Have a great day!</p>
-					<div className="py-10 text-center">
+					<div className="py-10 text-center rounded-md">
 						<Link
-							to="/home"
+							to="/"
 							className="px-12 bg-blue-600 text-white font-semiBold py-3"
 						>
 							Go to Home

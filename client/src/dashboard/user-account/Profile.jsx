@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import uploadImageToCloudinary from "../../utils/uploadCloudinary.js";
-import { BASE_URL, token } from "../../config.js";
+import { token } from "../../config.js";
 import { toast } from "react-toastify";
 import HashLoader from "react-spinners/HashLoader";
 
@@ -50,14 +50,17 @@ const Profile = ({ user }) => {
 		setIsLoading(true);
 
 		try {
-			const res = await fetch(`${BASE_URL}/users/${user._id}`, {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				},
-				body: JSON.stringify(formData),
-			});
+			const res = await fetch(
+				`${import.meta.env.VITE_BASE_URL}/users/${user._id}`,
+				{
+					method: "PUT",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${token}`,
+					},
+					body: JSON.stringify(formData),
+				}
+			);
 
 			const { msg } = await res.json();
 

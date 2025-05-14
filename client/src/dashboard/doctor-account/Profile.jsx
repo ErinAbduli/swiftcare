@@ -57,14 +57,17 @@ const Profile = ({ doctorData }) => {
 		e.preventDefault();
 
 		try {
-			const res = await fetch(`${BASE_URL}/doctors/${doctorData._id}`, {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json",
-					authorization: `Bearer ${token}`,
-				},
-				body: JSON.stringify(formData),
-			});
+			const res = await fetch(
+				`${import.meta.env.VITE_BASE_URL}/doctors/${doctorData._id}`,
+				{
+					method: "PUT",
+					headers: {
+						"Content-Type": "application/json",
+						authorization: `Bearer ${token}`,
+					},
+					body: JSON.stringify(formData),
+				}
+			);
 
 			const result = await res.json();
 

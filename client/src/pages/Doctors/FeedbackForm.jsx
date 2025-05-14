@@ -2,7 +2,7 @@ import { useState } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { HashLoader } from "react-spinners";
 import { useParams } from "react-router-dom";
-import { BASE_URL, token } from "../../config.js";
+import { token } from "../../config.js";
 import { toast } from "react-toastify";
 
 const FeedbackForm = () => {
@@ -22,17 +22,20 @@ const FeedbackForm = () => {
 				setLoading(false);
 				return toast.error("Please fill all fields!");
 			}
-			const res = await fetch(`${BASE_URL}/doctors/${id}/reviews`, {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				},
-				body: JSON.stringify({
-					rating,
-					reviewText,
-				}),
-			});
+			const res = await fetch(
+				`${import.meta.env.VITE_BASE_URL}/doctors/${id}/reviews`,
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${token}`,
+					},
+					body: JSON.stringify({
+						rating,
+						reviewText,
+					}),
+				}
+			);
 
 			const result = await res.json();
 

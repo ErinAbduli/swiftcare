@@ -1,16 +1,14 @@
-const uploadPreset = import.meta.env.VITE_UPLOAD_PRESET;
-const cloudName = import.meta.env.VITE_CLOUD_NAME;
-
 const uploadImageToCloudinary = async (file) => {
 	const uploadData = new FormData();
 
 	uploadData.append("file", file);
-	uploadData.append("upload_preset", "doctor-booking-system");
-
+	uploadData.append("upload_preset", `${import.meta.env.VITE_UPLOAD_PRESET}`);
 	try {
 		console.log(uploadData);
 		const res = await fetch(
-			`https://api.cloudinary.com/v1_1/erinabduli/image/upload`,
+			`https://api.cloudinary.com/v1_1/${
+				import.meta.env.VITE_CLOUD_NAME
+			}/image/upload`,
 			{
 				method: "post",
 				body: uploadData,

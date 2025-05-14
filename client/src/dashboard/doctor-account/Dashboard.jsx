@@ -2,7 +2,6 @@ import { useState } from "react";
 import Loading from "../../components/Loader/Loading.jsx";
 import Error from "../../components/Error/Error.jsx";
 import useFetchData from "../../hooks/useFetchData.jsx";
-import { BASE_URL, token } from "../../config.js";
 import Tabs from "./Tabs.jsx";
 import starIcon from "../../assets/images/star.png";
 import DoctorAbout from "../../pages/Doctors/DoctorAbout";
@@ -11,10 +10,8 @@ import Appointments from "./Appointments.jsx";
 
 const Dashboard = () => {
 	const { data, loading, error } = useFetchData(
-		`${BASE_URL}/doctors/profile/me`
+		`${import.meta.env.VITE_BASE_URL}/doctors/profile/me`
 	);
-
-	console.log(data);
 
 	const [tab, setTab] = useState("overview");
 
@@ -105,9 +102,7 @@ const Dashboard = () => {
 								)}
 								{tab === "appointments" && (
 									<Appointments
-										appointments={
-											data.doctorData.appointments
-										}
+										appointments={data.appointments}
 									/>
 								)}
 								{tab === "profile" && (

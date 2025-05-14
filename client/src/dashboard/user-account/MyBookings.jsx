@@ -1,5 +1,4 @@
 import useFetchData from "../../hooks/useFetchData.jsx";
-import { BASE_URL } from "../../config.js";
 import DoctorCard from "../../components/Doctors/DoctorCard.jsx";
 import Loading from "../../components/Loader/Loading.jsx";
 
@@ -8,7 +7,7 @@ const MyBookings = () => {
 		data: appointments,
 		loading,
 		error,
-	} = useFetchData(`${BASE_URL}/users/appointments/me`);
+	} = useFetchData(`${import.meta.env.VITE_BASE_URL}/users/appointments/me`);
 
 	console.log(appointments);
 

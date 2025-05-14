@@ -1,13 +1,15 @@
 import React from "react";
 import convertTime from "../../utils/convertTime.js";
-import { BASE_URL, token } from "../../config.js";
+import { token } from "../../config.js";
 import { toast } from "react-toastify";
 
 const SidePanel = ({ doctorId, timeSlots, ticketPrice }) => {
 	const bookingHandler = async () => {
 		try {
 			const res = await fetch(
-				`${BASE_URL}/bookings/checkout-session/${doctorId}`,
+				`${
+					import.meta.env.VITE_BASE_URL
+				}/bookings/checkout-session/${doctorId}`,
 				{
 					method: "POST",
 					headers: {

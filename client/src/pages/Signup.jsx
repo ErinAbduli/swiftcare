@@ -1,9 +1,7 @@
 import { useState } from "react";
 import signupImg from "../assets/images/signup.gif";
-import avatar from "../assets/images/avatar-icon.png";
 import { Link, useNavigate } from "react-router-dom";
 import uploadImageToCloudinary from "../utils/uploadCloudinary.js";
-import { BASE_URL } from "../config.js";
 import { toast } from "react-toastify";
 import HashLoader from "react-spinners/HashLoader";
 
@@ -43,13 +41,16 @@ const Signup = () => {
 		setIsLoading(true);
 
 		try {
-			const res = await fetch(`${BASE_URL}/auth/register`, {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(formData),
-			});
+			const res = await fetch(
+				`${import.meta.env.VITE_BASE_URL}/auth/register`,
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify(formData),
+				}
+			);
 
 			const { msg } = await res.json();
 

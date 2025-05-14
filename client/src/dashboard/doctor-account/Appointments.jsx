@@ -2,6 +2,7 @@ import React from "react";
 import { formatDate } from "../../utils/formatDate";
 
 const Appointments = ({ appointments }) => {
+	console.log(appointments);
 	return (
 		<table className="w-full  text-left text-sm text-gray-500">
 			<thead className="text-xs text-gray-700 uppercase bg-gray-50">
@@ -25,7 +26,7 @@ const Appointments = ({ appointments }) => {
 			</thead>
 			<tbody>
 				{appointments.map((appointment) => (
-					<tr key={appointment._id}>
+					<tr key={appointment?._id}>
 						<th
 							scope="row"
 							className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap"
@@ -48,15 +49,13 @@ const Appointments = ({ appointments }) => {
 						<td className="px-6 py-4">
 							{appointment.isPaid ? (
 								<div className="flex items-center">
-									<div className="h-2.5 w-2.5 rounded-full bg-green-500 mr-2">
-										Paid
-									</div>
+									<div className="h-2.5 w-2.5 rounded-full bg-green-500 mr-2"></div>
+									<span>Paid</span>
 								</div>
 							) : (
 								<div className="flex items-center">
-									<div className="h-2.5 w-2.5 rounded-full bg-red-500 mr-2">
-										Not Paid
-									</div>
+									<div className="h-2.5 w-2.5 rounded-full bg-red-500 mr-2"></div>
+									<span>Not Paid</span>
 								</div>
 							)}
 						</td>

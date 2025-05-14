@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { BASE_URL } from "../config";
 import { toast } from "react-toastify";
 import { authContext } from "../context/AuthContext.jsx";
 import HashLoader from "react-spinners/HashLoader";
@@ -26,13 +25,16 @@ const Login = () => {
 		setIsLoading(true);
 
 		try {
-			const res = await fetch(`${BASE_URL}/auth/login`, {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(formData),
-			});
+			const res = await fetch(
+				`${import.meta.env.VITE_BASE_URL}/auth/login`,
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify(formData),
+				}
+			);
 
 			const response = await res.json();
 

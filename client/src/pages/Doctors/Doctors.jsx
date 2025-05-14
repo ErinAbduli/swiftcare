@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import DoctorCard from "../../components/Doctors/DoctorCard";
-import { doctors } from "../../assets/data/doctors";
 import { BsSignIntersection } from "react-icons/bs";
 import Testimonial from "../../components/Testimonial/Testimonial";
-import { BASE_URL } from "../../config.js";
 import useFetchData from "../../hooks/useFetchData.jsx";
 import Loader from "../../components/Loader/Loading.jsx";
 import Error from "../../components/Error/Error.jsx";
@@ -15,7 +13,9 @@ const Doctors = () => {
 		data: doctors,
 		loading,
 		error,
-	} = useFetchData(`${BASE_URL}/doctors?query=${debounceQuery}`);
+	} = useFetchData(
+		`${import.meta.env.VITE_BASE_URL}/doctors?query=${debounceQuery}`
+	);
 
 	const handleSearch = () => {
 		setQuery(query.trim());
