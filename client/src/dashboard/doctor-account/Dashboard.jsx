@@ -3,7 +3,7 @@ import Loading from "../../components/Loader/Loading.jsx";
 import Error from "../../components/Error/Error.jsx";
 import useFetchData from "../../hooks/useFetchData.jsx";
 import Tabs from "./Tabs.jsx";
-import starIcon from "../../assets/images/star.png";
+import starIcon from "../../assets/images/Star.png";
 import DoctorAbout from "../../pages/Doctors/DoctorAbout";
 import Profile from "./Profile.jsx";
 import Appointments from "./Appointments.jsx";
